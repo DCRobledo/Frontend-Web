@@ -7,34 +7,3 @@ body {
   background: #27292c;
   color: white;
 }
-
-h1 {
-  margin-top: 30px;
-}
-
-.nav-list {
-  list-style: none;
-  display: flex;
-}
-
-.nav-list li {
-  margin-left: 10px;
-  font-size: 1.3em;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.header-logo {
-  width: 55px;
-}
-
-footer  {
-  padding: 20px;
-  background: black;
-}
