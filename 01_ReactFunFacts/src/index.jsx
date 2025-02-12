@@ -1,11 +1,19 @@
 import { createRoot } from 'react-dom/client'
-import {StrictMode} from "react";
+import { StrictMode } from "react";
+
 const root = createRoot(document.getElementById('root'));
 
 function Header() {
     return (
         <header>
-            <img src={"./assets/react-logo.png"} width={"40px"} alt={"React Logo"} />
+            <img src={"react-logo.png"} alt={"React Logo"} className={"header-logo"} />
+            <nav>
+                <ul className={"nav-list"}>
+                    <li>Pricing</li>
+                    <li>About</li>
+                    <li>Contact</li>
+                </ul>
+            </nav>
         </header>
     )
 }
@@ -13,12 +21,12 @@ function Header() {
 function Footer() {
     return (
         <footer>
-            <small>© 2025 Robledo development. All rights reserved.</small>
+            <small>© 2025 Daniel Robledo (Source from Scrimba). All rights reserved.</small>
         </footer>
     )
 }
 
-function Page() {
+function MainContent() {
     return (
         <main>
             <h1>Reasons I am excited to learn React</h1>
@@ -32,8 +40,8 @@ function Page() {
 
 root.render(
     <StrictMode>
-        <Header/>
-        <Page/>
-        <Footer/>
+        <Header />
+        <MainContent />
+        <Footer />
     </StrictMode>
 )
