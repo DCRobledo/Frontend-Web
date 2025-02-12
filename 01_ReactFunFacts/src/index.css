@@ -34,3 +34,41 @@ header p {
   line-height: 26.93px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
+
+main {
+  font-family: Inter, serif;
+  padding: 57px 27px;
+  background: #282D35;
+  height: 459px;
+  background-image: url(/images/react-logo-half.png);
+  background-repeat: no-repeat;
+  background-position: right 70%;
+}
+
+main h1 {
+  font-weight: 700;
+  font-size: 39px;
+  line-height: 47px;
+  padding: 0;
+  padding-right: 50px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+main ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 200px;
+}
+
+main ul > li::marker {
+  color: #61DAFB;
+  font-size: 1.5rem;
+}
+
+main li {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
