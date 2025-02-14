@@ -1,4 +1,7 @@
 ﻿import {useState} from "react";
+import Recipe from "./Recipe.jsx";
+import IngredientsList from "./IngredientsList.jsx";
+import AddIngredient from "./AddIngredient.jsx";
 
 const Main = () => {
     const [ingredients, setIngredients] = useState([])
@@ -7,30 +10,19 @@ const Main = () => {
         <li key={ingredient}>{ingredient}</li>
     ))
     
-    function onSubmitAddIngredient(event) {
-        event.preventDefault();
-        
-        const formData = new FormData(event.currentTarget);
-        const newIngredient = formData.get('ingredient');
-        
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
-        console.log(ingredientsList);
-    }
+    const [shouldShowRecipe, setShouldShowRecipe] = useState(false)
     
     return (
         <main>
-            <form onSubmit={onSubmitAddIngredient} className="add-ingredient-form">
-                <input
-                    type="text"
-                    placeholder="e.g. oregano"
-                    aria-label="Add ingredient"
-                    name={"ingredient"}
-                />
-                <button>Add ingredient</button>
-            </form>
-            <ul>
-                {ingredientsList}
-            </ul>
+            <AddIngredient 
+                setIngredients={setIngredients}
+            />
+            {ingredientsList.length > 0 && <IngredientsList
+                ingredientsList={ingredientsList}
+                shouldShowRecipe={shouldShowRecipe}
+                setShouldShowRecipe={setShouldShowRecipe}
+            />}
+            {shouldShowRecipe && <Recipe />}
         </main>
     );
 };
