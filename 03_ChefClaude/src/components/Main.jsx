@@ -1,7 +1,8 @@
 ﻿import {useState} from "react";
-import Recipe from "./Recipe.jsx";
+
 import IngredientsList from "./IngredientsList.jsx";
 import AddIngredient from "./AddIngredient.jsx";
+import ClaudeRecipe from "./ClaudeRecipe.jsx";
 
 const Main = () => {
     const [ingredients, setIngredients] = useState([])
@@ -11,6 +12,7 @@ const Main = () => {
     ))
     
     const [shouldShowRecipe, setShouldShowRecipe] = useState(false)
+    const [recipe, setRecipe] = useState(null);
     
     return (
         <main>
@@ -19,10 +21,12 @@ const Main = () => {
             />
             {ingredientsList.length > 0 && <IngredientsList
                 ingredientsList={ingredientsList}
-                shouldShowRecipe={shouldShowRecipe}
                 setShouldShowRecipe={setShouldShowRecipe}
+                setRecipe={setRecipe}
             />}
-            {shouldShowRecipe && <Recipe />}
+            {shouldShowRecipe && <ClaudeRecipe
+                recipe={recipe}
+            />}
         </main>
     );
 };

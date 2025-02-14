@@ -1,4 +1,13 @@
-﻿const IngredientsList = ({ingredientsList, shouldShowRecipe, setShouldShowRecipe}) => {
+﻿import {getRecipeFromChefClaude} from "../AIHandler.js";
+
+const IngredientsList = ({ingredientsList, setShouldShowRecipe, setRecipe}) => {
+    async function onGetRecipeClick() {
+        setShouldShowRecipe(true);
+
+        const recipe = await getRecipeFromChefClaude(ingredientsList)
+        setRecipe(recipe)
+    }
+    
     return (
         <section>
             <h2>Ingredients on hand:</h2>
@@ -9,7 +18,7 @@
                     <p>Generate a recipe from your list of ingredients.</p>
                 </div>
                 <button
-                    onClick={() => setShouldShowRecipe(!shouldShowRecipe)}
+                    onClick={onGetRecipeClick}
                 >Get a recipe
                 </button>
             </div>}
