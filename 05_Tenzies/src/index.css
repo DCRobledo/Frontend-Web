@@ -49,10 +49,8 @@ main {
 }
 
 .dice-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 4em;
     padding: 0;
     margin: 1em 0;
@@ -62,7 +60,7 @@ main {
     width: 125px;
     height: 125px;
     border-radius: 5px;
-    border: 0px solid #2B283A;
+    border: 0 solid #2B283A;
     box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 15%);
     background-color: white;
     font-weight: 700;
@@ -70,16 +68,31 @@ main {
     text-align: center;
 }
 
+.dice:hover {
+    background-color: #e1e1e1;
+}
+
+.dice.frozen {
+    background-color: #59E391;
+}
+
+.dice.frozen:hover {
+    background-color: #99e1b1;
+}
+
 .roll-button {
     width: 200px;
     height: 80px;
     border-radius: 10px;
     background-color: #5035FF;
-    border: 0px solid #2B283A;
+    border: 0 solid #2B283A;
     box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 15%);
     font-weight: 700;
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     margin-top: 1.5em
-    
+}
+
+.roll-button:hover {
+    background-color: #bcb4ff;
 }
