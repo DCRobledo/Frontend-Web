@@ -12,3 +12,100 @@ body {
     display: flex;
     justify-content: center;
 }
+
+header {
+    text-align: center;
+    font-weight: 500;
+}
+
+header > h1 {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 2em;
+    margin-bottom: 0.1em;
+}
+
+header > p {
+    font-size: 14px;
+    line-height: 18px;
+    color: #8E8E8E;
+    padding: 0 10em;
+}
+
+.mistake-message {
+    color: #F9F4D4;
+    background-color: purple;
+    padding: 1.5em;
+    margin: 1em 7em;
+    border: 1px dashed black;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 21px;
+}
+
+.languages-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    margin: 3em 9em;
+    
+}
+
+.languages-list > p {
+    background-color: orange;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 3px;
+    margin: 0;
+}
+
+.word-letters {
+    display: flex;
+    gap: 6px; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+.word-letters > p {
+    background-color: #323232;
+    border-bottom: 1px solid #F9F4D4;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.alphabet-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    max-width: 480px;
+    margin: auto;
+}
+
+.alphabet-list > button {
+    background-color: #FCBA29;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1E1E1E;
+    padding: 6px;
+}
