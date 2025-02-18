@@ -1,16 +1,11 @@
 ﻿import React from 'react';
 
-const Word = () => {
+const Word = ({randomWordLetters}) => {
     return (
         <div className={"word-letters"}>
-            <p>A</p>
-            <p>B</p>
-            <p>C</p>
-            <p>D</p>
-            <p>E</p>
-            <p>F</p>
-            <p>G</p>
-            <p>H</p>
+            {randomWordLetters.map((value, index) => (
+                <p key={index}>{value.isShown && value.letter}</p>
+            ))}
         </div>
     );
 };

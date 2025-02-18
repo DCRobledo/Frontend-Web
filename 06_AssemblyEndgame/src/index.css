@@ -109,3 +109,11 @@ header > p {
     color: #1E1E1E;
     padding: 6px;
 }
+
+.alphabet-list > button.right {
+    background-color: #10A95B;
+}
+
+.alphabet-list > button.wrong {
+    background-color: #EC5D49;
+}
