@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createRef, useEffect, useRef} from "react";
 
 import Header from "./components/Header.jsx";
 import Languages from "./components/Languages.jsx";
@@ -9,6 +9,10 @@ import {generate} from "random-words";
 
 
 const App = () => {
+    const languagesRef = useRef(null);
+    
+    const [numOfMistakes, setNumOfMistakes] = React.useState(0);
+    
     const [randomWordLetters, setRandomWordLetters] = React.useState(generateRandomWord())
     function generateRandomWord() {
         let newRandomWord = generate({ minLength: 8, maxLength: 8 });
@@ -21,8 +25,6 @@ const App = () => {
     }
     
     function lookForLetter(letter) {
-        console.log(letter);
-        
         let isLetterFound = false;
         const newRandomWordLetters = Array.from(randomWordLetters)
         
@@ -34,14 +36,27 @@ const App = () => {
         }
         
         setRandomWordLetters(newRandomWordLetters)
+        
+        if (!isLetterFound) {
+            onMistake()
+        }
+        
         return isLetterFound
+    }
+    
+    function onMistake() {
+        setNumOfMistakes(numOfMistakes + 1);
+        console.log("Current ref value:", languagesRef);
+        languagesRef.current?.killLanguage(numOfMistakes);
+        
+        // TODO: Check for game over
     }
     
     return (
         <>
             <Header />
             <main>
-                <Languages />
+                <Languages ref={languagesRef}/>
                 <Word 
                     randomWordLetters={randomWordLetters}
                 />

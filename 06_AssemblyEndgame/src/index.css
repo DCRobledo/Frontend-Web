@@ -52,8 +52,8 @@ header > p {
     align-content: center;
     flex-wrap: wrap;
     gap: 0.25em;
-    margin: 3em 9em;
-    
+    margin: 3em auto;
+    max-width: 300px;
 }
 
 .languages-list > p {
