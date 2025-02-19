@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useRef} from "react";
+import React, {useEffect, useRef} from "react";
 
 import Header from "./components/Header.jsx";
 import Languages from "./components/Languages.jsx";
@@ -6,7 +6,6 @@ import Word from "./components/Word.jsx";
 import Alphabet from "./components/Alphabet.jsx";
 
 import {generate} from "random-words";
-
 
 const App = () => {
     const languagesRef = useRef(null);
@@ -38,19 +37,19 @@ const App = () => {
         setRandomWordLetters(newRandomWordLetters)
         
         if (!isLetterFound) {
-            onMistake()
+            setNumOfMistakes(prev => {
+                return prev + 1
+            });
         }
         
         return isLetterFound
     }
-    
-    function onMistake() {
-        setNumOfMistakes(numOfMistakes + 1);
-        console.log("Current ref value:", languagesRef);
-        languagesRef.current?.killLanguage(numOfMistakes);
-        
-        // TODO: Check for game over
-    }
+
+    useEffect(() => {
+        if (numOfMistakes > 0 && numOfMistakes < 8) {
+            languagesRef.current?.killLanguage(numOfMistakes);
+        }
+    }, [numOfMistakes]);
     
     return (
         <>
