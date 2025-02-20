@@ -1,33 +1,42 @@
-﻿import React, {useEffect} from 'react';
+﻿import React, {useEffect, useImperativeHandle} from 'react';
 import Letter from "./Letter.jsx";
-import letter from "./Letter.jsx";
 
-const Alphabet = ({onKeySelected}) => {
-    const [alphabetLetters, setAlphabetLetters] = React.useState(generateAlphabetLetters())
+const Alphabet = ({ref, onKeySelected}) => {
+    const letterRefs = React.useRef([])
+    const [alphabetLetters, setAlphabetLetters] = React.useState([])
     
-    function generateAlphabetLetters() {
+    useEffect(() => {
         const alphabet = Array.from({length: 26}, (_, i) => String.fromCharCode(65 + i))
-        const letters = []
-        alphabet.map((value, index) => {
-            letters.push(
-                <Letter
-                    key={index}
-                    character={value}
-                    onKeySelected={onKeySelected}
-                />
-            )
-        })
-        return letters;
-    }
+        setAlphabetLetters(alphabet)
+    }, [])
+    
+    useImperativeHandle(ref, () => {
+        return {
+            disableAlphabet() {
+                alphabetLetters.map((value, index) => {
+                    letterRefs.current[index]?.disableKey()
+                })
+
+                window.removeEventListener("keydown", onKeyPressed);
+            },
+            enableAlphabet() {
+                alphabetLetters.map((value, index) => {
+                    letterRefs.current[index]?.enableKey()
+                })
+
+                window.addEventListener("keydown", onKeyPressed);
+            }
+        }
+    }, [alphabetLetters])
     
     const onKeyPressed = (event) => {
         const key = event.key.toUpperCase()
         if (/^[A-Z]/.test(key))
         {
-            alphabetLetters.map(({props}) => {
-                if (props.character === key) 
+            alphabetLetters.forEach((value, index) => {
+                if (value === key)
                 {
-                    onKeySelected(key)
+                    letterRefs.current[index]?.clickKey()
                 }
             })
         }
@@ -36,11 +45,20 @@ const Alphabet = ({onKeySelected}) => {
     useEffect(() => {
         window.addEventListener("keydown", onKeyPressed);
         return () => window.removeEventListener("keydown", onKeyPressed);
-    }, [])
+    }, [alphabetLetters])
     
     return (
         <div className={"alphabet-list"}>
-            {alphabetLetters}  
+            {alphabetLetters.map((value, index) => {
+                return (
+                    <Letter
+                        ref={(el) => (letterRefs.current[index] = el)}
+                        key={index}
+                        character={value}
+                        onKeySelected={onKeySelected}
+                    />
+                )
+            })}  
         </div>
     );
 };

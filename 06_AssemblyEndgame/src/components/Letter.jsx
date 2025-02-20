@@ -1,22 +1,41 @@
-﻿import React from 'react';
+﻿import React, {useImperativeHandle} from 'react';
 
-const Letter = ({character, onKeySelected}) => {
+const Letter = ({ref, ...props}) => {
     const [buttonClassName, setButtonClassName] = React.useState("")
     const [hasBeenClicked, setHasBeenClicked] = React.useState(false);
     
     const onKeyClicked = (letterToSearch) => {
-        const isLetterFound = onKeySelected(letterToSearch)
+        const isLetterFound = props.onKeySelected(letterToSearch)
         setButtonClassName(isLetterFound ? "right" : "wrong")
         
         setHasBeenClicked(true)
     }
+
+    useImperativeHandle(ref, () => {
+        return {
+            clickKey() {
+                if (!hasBeenClicked) {
+                    onKeyClicked(props.character)
+                }
+            },
+            
+            disableKey() {
+                setHasBeenClicked(true)
+            },
+            enableKey() {
+                setHasBeenClicked(false)
+                setButtonClassName("")
+            }
+        }
+    }, []);
     
     return (
         <button
             className={buttonClassName}
-            onClick={!hasBeenClicked ? (() => onKeyClicked(character)) : null}
+            style={{opacity: hasBeenClicked ? 0.7 : 1}}
+            onClick={!hasBeenClicked ? (() => onKeyClicked(props.character)) : null}
         >
-            {character}
+            {props.character}
         </button>
     );
 };
